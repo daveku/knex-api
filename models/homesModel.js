@@ -17,7 +17,22 @@ const create = (bodyHome) => {
     .into("homes");
 };
 
+const getAll = () => {
+  return knex
+    .select([
+      "home_id",
+      "title",
+      "description",
+      "guests",
+      "address",
+      "is_available",
+      "created_at",
+    ])
+    .from("homes");
+};
+
 // Paso #3 exportar mis funciones para que sean accesibles desde el controlador.
 module.exports = {
   create,
+  getAll,
 };

@@ -5,14 +5,28 @@ const homesModels = require("../models/homesModel");
 const createHome = (req, res) => {
   // res.send({ message: "Home creado" });
 
-  homesModels.create(req.body).then((row) => {
-    res.status(201).send(row);
-  })
-  .catch((err) => {
-    res.status(400).send(err.message);
-  })
+  homesModels
+    .create(req.body)
+    .then((row) => {
+      res.status(201).send(row);
+    })
+    .catch((err) => {
+      res.status(400).send(err.message);
+    });
+};
+
+const getAllHomes = (req, res) => {
+  homesModels
+    .getAll()
+    .then((rows) => {
+      res.status(200).send(rows);
+    })
+    .catch((err) => {
+      res.status(400).send(err.message);
+    });
 };
 
 module.exports = {
   createHome,
+  getAllHomes,
 };
