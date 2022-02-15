@@ -31,8 +31,24 @@ const getAll = () => {
     .from("homes");
 };
 
+const getHome = (id) => {
+  return knex
+    .select([
+      "home_id",
+      "title",
+      "description",
+      "guests",
+      "address",
+      "is_available",
+      "created_at",
+    ])
+    .from("homes")
+    .where({ home_id: id });
+};
+
 // Paso #3 exportar mis funciones para que sean accesibles desde el controlador.
 module.exports = {
   create,
   getAll,
+  getHome,
 };

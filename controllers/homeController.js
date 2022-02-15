@@ -26,7 +26,19 @@ const getAllHomes = (req, res) => {
     });
 };
 
+const getHome = (req, res) => {
+  homesModels
+    .getHome(req.params.id)
+    .then((row) => {
+      res.status(200).send(row);
+    })
+    .catch((err) => {
+      res.status(400).send(err.message);
+    });
+};
+
 module.exports = {
   createHome,
   getAllHomes,
+  getHome,
 };
