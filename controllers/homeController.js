@@ -48,9 +48,33 @@ const update = (req, res) => {
     });
 };
 
+const deleteHome = (req, res) => {
+  homesModels
+    .delete(req.params.id)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((err) => {
+      res.status(400).send(err.message);
+    });
+};
+
+const softDelete = (req, res) => {
+  homesModels
+    .softDelete(req.params.id)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((err) => {
+      res.status(400).send(err.message);
+    });
+};
+
 module.exports = {
   createHome,
   getAllHomes,
   getHome,
-  update
+  update,
+  deleteHome,
+  softDelete,
 };

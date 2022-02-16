@@ -62,10 +62,25 @@ const update = (id, bodyToUpdate) => {
     ]);
 };
 
+// Borrar un registro de manera real en la base de datos.
+const deleteHome = (id) => {
+  return knex.del().from("homes").where({ home_id: id });
+};
+
+// Borrado lógico, solo cambia el estado de is_available a false.
+const softDelete = (id) => {
+  return knex
+    .update({ is_available: false })
+    .from("homes")
+    .where({ home_id: id });
+};
+
 // Paso #3 exportar mis funciones para que sean accesibles desde el controlador.
 module.exports = {
   create,
   getAll,
   getHome,
   update,
+  deleteHome,
+  softDelete,
 };
